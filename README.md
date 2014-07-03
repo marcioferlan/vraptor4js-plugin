@@ -84,6 +84,14 @@ Features
 - AngularJS and jQuery implementations available;
 - Simple and object parameters binding (```'Marcio'``` or ```{name:'Marcio'}```).
 
+
+Example (demo)
+--------------
+
+There's an example project with 2 modules (web apps) for you to test and get started to the use of VRaptor4js plugin. One of them is the server-side and the other one is the client-side app.
+
+Please, refer to https://github.com/marcioferlan/vraptor4js-example and follow the instructions in the README file.
+
 Known issues / limitations
 --------------------------
 As of now...
