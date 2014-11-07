@@ -4,8 +4,8 @@ import java.io.StringWriter;
 import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
-import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
@@ -14,7 +14,7 @@ import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 @ApplicationScoped
 public class VelocityBuilder {
 	
-	public final VelocityEngine engine;
+	public VelocityEngine engine;
 
 	/**
 	 * @deprecated CDI eyes-only
@@ -23,6 +23,7 @@ public class VelocityBuilder {
 		this(null);
 	}
 	
+	@Inject
 	public VelocityBuilder(VelocityConfiguration configuration) {
 		engine = new VelocityEngine();
 		engine.setProperty(RuntimeConstants.RESOURCE_LOADER, configuration.getResourceLoader());
@@ -30,29 +31,22 @@ public class VelocityBuilder {
 		engine.setProperty(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, configuration.getLogger());
 		engine.init();
 	}
-
-	private Template getTemplate(String name) {
-		return engine.getTemplate(name);
-	}
 	
-	private VelocityContext getContext(Map<String, Object> params) {
-		return new VelocityContext(params);
-	}
-
-	private StringWriter getWriter() {
-		return new StringWriter();
-	}
-
 	public String generate(Map<String, Object> params, String name) {
-		final VelocityContext context = getContext(params);
+		VelocityContext context = new VelocityContext(params);
 		try {
-			final Template jsController = getTemplate(name);
-			final StringWriter writer = getWriter();
-			jsController.merge(context, writer);
+			StringWriter writer = new StringWriter();
+			mergeTemplate(name, context, writer);
 			writer.close();
 			return writer.toString();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
+
+	private void mergeTemplate(String name, VelocityContext context,
+			StringWriter writer) {
+		engine.getTemplate(name).merge(context, writer);
+	}
+
 }
