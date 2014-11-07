@@ -15,7 +15,7 @@ Add VRaptor4js Maven dependency to you pom.xml:
 <dependency>
 	<groupId>com.github</groupId>
 	<artifactId>vraptor4js-plugin</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
+	<version>1.1.0</version> <!-- use the latest version available -->
 </dependency>
 ```
 
@@ -25,11 +25,11 @@ How it works
 ------------
 Look at this. Imagine you have REST actions in your Controllers like this one: 
 ```
-@Controller
+@V4js @Controller
 public class PersonController {
     @Get("/person/details")
     public void details(){
-        final Person person = new Person("Marcio"); // retrieve a person record
+        Person person = new Person("Marcio"); // retrieve a person record
         result.use(Results.json()).from(person).recursive().serialize();
     }
 }
@@ -44,31 +44,45 @@ Now, from within your JS code you can invoke them as easily as this:
     });
 </script>
 ```
-See? You get a JS object with your controller's name with all public methods available. You don't have to worry about the underlying Ajax infrastructure involved in binding your JS component to your VRaptor Controller methods. You can freely change the methods URLs, HTTP Methods (GET, POST, etc) as you wish and VRaptor4js does the trick for you automatically using either AngularJS or jQuery (that's configurable).
+See? You get a JS object with your controller's name and you don't have to worry about the underlying Ajax infrastructure involved in binding your JS component to your VRaptor Controller methods. You can freely change the methods URLs, HTTP Methods (GET, POST, etc) as you wish and VRaptor4js does the trick for you automatically using either AngularJS or jQuery (that's configurable).
 
 Configuration
 -------------
-1) Choose your prefered JavaScript library and include it in your application:
+
+### VRaptor Controllers ###
+
+1) Annotate your VRaptor Controller classes or their action methods with ```@V4js```.
+
+> Notice that if you place the annotation at the type (class) level, all of its public methods will be exposed in your JS Controller. On the other hand, if the annotation is placed at the method level, only those methods will be exposed. Use this option if you need to expose only certain methods of your controller.
+> 
+
+### Client-side ###
+
+1) Choose your prefered JavaScript library and include it in your page:
 - AngularJS - https://angularjs.org/
 - jQuery - https://jquery.org/
 
-2) Then, simply place on of thess directives to access your JS controllers:
+2) Then, simply add one of these directives to access your JS controllers:
 
 ```
-<script src="v4js/angular/PersonController"></script> <!-- AngularJS -->
+<!-- AngularJS -->
+<script src="v4js/angular/PersonController"></script>
 or
-<script src="v4js/jquery/PersonController"></script> <!-- JQuery -->
+<!-- JQuery -->
+<script src="v4js/jquery/PersonController"></script>
 ```
 
-That's it. At this point you all set to access your controllers.
+That's it. At this point you should be all set!
 
 CORS support
 ------------
 
 In case your REST services are provided by an application with a different domain/subdomain (like ```api.domain.com```), just add the absolute path to the resources (instead of relative paths), like this:
 ```
+<!-- AngularJS -->
 <script src="http://api.domain.com/v4js/angular/PersonController"></script>
 or
+<!-- JQuery -->
 <script src="http://api.domain.com/v4js/jquery/PersonController"></script>
 ```
 VRaptor4js will ensure to enable CORS support in your application.
