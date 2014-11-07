@@ -6,11 +6,11 @@ var v4jsErr = function(error){
 angular.module('app.services')
 	.factory('${ctrl}', function ($http) {
 	    return {
-	        #foreach($action in $actions)${action.name}: function(#{foreach}($param in $action.params)${param},#{end}successCallback,errorCallback) {
+	        #foreach($action in $actions)${action.name}: function(#{foreach}($param in $action.params)${param},#{end}success,error) {
 	            var params = null;
 	            #if(!$action.params.isEmpty())params = angular.toJson({#foreach($param in $action.params)${param}:${param}#{end}#if($foreach.hasNext),#end});#end
 	
-				$http.${action.httpMethod}('${action.url}', params).success(successCallback).error(errorCallback||v4jsErr);
+				$http.${action.httpMethod}('${action.url}', params).success(success).error(error||v4jsErr);
 			}#if($foreach.hasNext),#end
 			
 			#end

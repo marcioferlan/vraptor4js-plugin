@@ -4,7 +4,7 @@ var v4jsErr = function(error){
 	console.log("******* [End] v4js Error Callback **********");
 };
 var ${ctrl} = {
-	#foreach($action in $actions)${action.name}: function(#{foreach}($param in $action.params)${param},#{end}successCallback,errorCallback) {
+	#foreach($action in $actions)${action.name}: function(#{foreach}($param in $action.params)${param},#{end}success,error) {
 		var params = null;
 		#if(!$action.params.isEmpty())params = {#foreach($param in $action.params)${param}:${param}#{end}#if($foreach.hasNext),#end};#end
 	
@@ -12,8 +12,8 @@ var ${ctrl} = {
 			data : JSON.stringify(params),
 			contentType : 'application/json',
 			type : '${action.httpMethod}',
-			success : successCallback,
-			error: errorCallback||v4jsErr
+			success : success,
+			error: error||v4jsErr
 		});
 	},
 	#end
