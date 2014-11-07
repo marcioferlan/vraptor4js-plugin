@@ -2,7 +2,7 @@
 
 Overview
 --------
-This plugin creates a JS bridge to your VRaptor controllers. It works as an abstraction layer to expose the application actions to your JS components. By using it, you can invoke the controllers methods directly without worring about the underlying infrastructure required to effectively get access to them (URLs, HTTP methods, CORS support, parameters binding, etc).
+This plugin creates a JS bridge to your VRaptor controllers. It works as an abstraction layer to expose the application actions to your JS components. With it, you can invoke the controllers methods directly without worring about the underlying infrastructure required to effectively get access to them (URLs, HTTP methods, CORS support, parameters binding, etc).
 
 Dependencies
 ------------
@@ -15,7 +15,7 @@ Add VRaptor4js Maven dependency to you pom.xml:
 <dependency>
 	<groupId>com.github</groupId>
 	<artifactId>vraptor4js-plugin</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -36,31 +36,29 @@ public class PersonController {
 ```
 Now, from within your JS code you can invoke them as easily as this: 
 ```
-<script src="v4js/ctrl/PersonController"></script>
+<script src="v4js/angular/PersonController"></script>
 <script>
-    PersonController.details(function(person)){
+    PersonController.details(function(person){
     	// the person object is fully loaded at this point
     	console.log(person.name);
-    }
+    });
 </script>
 ```
-See? You get a JS object with your controller's name with all public methods of it available. You don't have to worry about the underlying Ajax infrastructure involved in binding your JS component to your VRaptor Controller methods. You can freely change the methods URLs, HTTP Methods (GET, POST, etc) as you wish and VRaptor4js does the trick for you automatically using either AngularJS (default) or jQuery (that's configurable).
+See? You get a JS object with your controller's name with all public methods available. You don't have to worry about the underlying Ajax infrastructure involved in binding your JS component to your VRaptor Controller methods. You can freely change the methods URLs, HTTP Methods (GET, POST, etc) as you wish and VRaptor4js does the trick for you automatically using either AngularJS or jQuery (that's configurable).
 
 Configuration
 -------------
 1) Choose your prefered JavaScript library and include it in your application:
-- AngularJS (default) - https://angularjs.org/
+- AngularJS - https://angularjs.org/
 - jQuery - https://jquery.org/
 
-2) Then, simply place this directive before your JS controllers:
+2) Then, simply place on of thess directives to access your JS controllers:
 
 ```
-<!-- JS library definition -->
-<script src="v4js/lib/jquery"></script> <!-- Must be either angular or jquery -->
-<!-- JS Controllers go here -->
-<script src="v4js/ctrl/PersonController"></script>
+<script src="v4js/angular/PersonController"></script> <!-- AngularJS -->
+or
+<script src="v4js/jquery/PersonController"></script> <!-- JQuery -->
 ```
-If Angular JS is your choice, you can ommit it as it is the default library.
 
 That's it. At this point you all set to access your controllers.
 
@@ -69,10 +67,9 @@ CORS support
 
 In case your REST services are provided by an application with a different domain/subdomain (like ```api.domain.com```), just add the absolute path to the resources (instead of relative paths), like this:
 ```
-<!-- JS library definition -->
-<script src="http://api.domain.com/v4js/lib/angular"></script>
-<!-- JS Controllers go here -->
-<script src="http://api.domain.com/v4js/ctrl/PersonController"></script>
+<script src="http://api.domain.com/v4js/angular/PersonController"></script>
+or
+<script src="http://api.domain.com/v4js/jquery/PersonController"></script>
 ```
 VRaptor4js will ensure to enable CORS support in your application.
 
@@ -102,4 +99,4 @@ As of now...
 
 Feedback
 --------
-I would love hearing what you think about this plugin. I encourage you to drop me a message at marcioferlan@gmail.com. Your suggestions, contributions, and donations are welcome! ;)
+I would appreciate hearing what you think about this plugin. I encourage you to drop me a message at marcioferlan@gmail.com. Your suggestions, contributions, and donations are welcome! ;)
