@@ -2,16 +2,16 @@ package com.github.vraptor4js;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
 
 /**
- * This session component is responsible for holding the JS library to use.
+ * This component is responsible for holding the JS library to use.
  * Angular JS is the default value, but jQuery is also available.
  * 
  * @author Marcio Lima
  *
  */
-@SessionScoped
+@ApplicationScoped
 public class ControllerLib implements Serializable {
 
 	private static final long serialVersionUID = 7905955221131628107L;

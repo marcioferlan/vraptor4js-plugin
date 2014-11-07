@@ -8,11 +8,10 @@ import javax.inject.Inject;
 import org.apache.tools.ant.filters.StringInputStream;
 
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
-import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.observer.download.Download;
 import br.com.caelum.vraptor.observer.download.InputStreamDownload;
-import br.com.caelum.vraptor.view.Results;
 
 import com.github.vraptor4js.velocity.JsControllerGenerator;
 import com.google.common.collect.Maps;
@@ -22,9 +21,6 @@ import com.google.common.collect.Maps;
 public class VRaptor4jsController {
 
 	private static final String CONTENT_TYPE = "text/javascript; charset=UTF-8";
-
-	@Inject
-	private Result result;
 
 	@Inject
 	private JsControllerGenerator generator;
@@ -39,22 +35,13 @@ public class VRaptor4jsController {
 	private ControllerLib lib;
 
 	/**
-	 * Action to define the JS lib to use (angular [default] or jquery)
-	 * @param lib
-	 */
-	@Path("/lib/{lib}")
-	public void setLib(String lib) {
-		this.lib.set(lib);
-		result.use(Results.status()).ok();
-	}
-
-	/**
 	 * Action that generates the JS controller dinamically
 	 * @param ctrl
 	 * @return
 	 */
-	@Path("/ctrl/{ctrl}")
-	public Download controller(String ctrl) {
+	@Get("/{lib}/{ctrl}")
+	public Download controller(String lib, String ctrl) {
+		this.lib.set(lib);
 		final List<AppAction> actions = controllersRegistry.getActions(ctrl);
 		if (actions != null) {
 			for (final AppAction action : actions) {
