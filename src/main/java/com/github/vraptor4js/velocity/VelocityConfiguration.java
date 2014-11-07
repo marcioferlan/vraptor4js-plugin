@@ -11,9 +11,7 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class VelocityConfiguration {
 
-	@Deprecated
-	// CDI only
-	public VelocityConfiguration() {
+	protected VelocityConfiguration() {
 	}
 
 	public String getResourceLoader() {
