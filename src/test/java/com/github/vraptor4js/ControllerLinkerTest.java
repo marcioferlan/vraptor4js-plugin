@@ -22,11 +22,6 @@ public class ControllerLinkerTest {
 	private Method method;
 	private Class<MyController> controller;
 	
-	static class MyController {
-		public void myMethod() {
-		}
-	}
-	
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);

@@ -1,7 +1,6 @@
 package com.github.vraptor4js;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -14,7 +13,6 @@ import br.com.caelum.vraptor.observer.download.Download;
 import br.com.caelum.vraptor.observer.download.InputStreamDownload;
 
 import com.github.vraptor4js.velocity.JsControllerGenerator;
-import com.google.common.collect.Maps;
 
 @Controller
 @Path("/v4js")
@@ -22,17 +20,32 @@ public class VRaptor4jsController {
 
 	private static final String CONTENT_TYPE = "text/javascript; charset=UTF-8";
 
-	@Inject
-	private JsControllerGenerator generator;
+	private final JsControllerGenerator generator;
+
+	private final ControllerRegistry controllersRegistry;
+
+	private final ControllerLinker linker;
+
+	private final ControllerLib lib;
+	
+	/**
+	 * @deprecated CDI eyes-only
+	 */
+	protected VRaptor4jsController() {
+		this(null, null, null, null);
+	}
 
 	@Inject
-	private ControllerRegistry controllersRegistry;
+	public VRaptor4jsController(JsControllerGenerator generator,
+			ControllerRegistry controllersRegistry, ControllerLinker linker,
+			ControllerLib lib) {
+		this.generator = generator;
+		this.controllersRegistry = controllersRegistry;
+		this.linker = linker;
+		this.lib = lib;
+	}
 
-	@Inject
-	private ControllerLinker linker;
 
-	@Inject
-	private ControllerLib lib;
 
 	/**
 	 * Action that generates the JS controller dinamically
@@ -53,10 +66,7 @@ public class VRaptor4jsController {
 	}
 
 	private Download download(List<AppAction> actions, String ctrl) {
-		final Map<String, Object> params = Maps.newHashMap();
-		params.put("ctrl", ctrl);
-		params.put("actions", actions);
-		final String javascript = generator.generate(params);
+		final String javascript = generator.generate(actions, ctrl);
 		final StringInputStream inputstream = new StringInputStream(javascript.toString());
 		return new InputStreamDownload(inputstream, CONTENT_TYPE, ctrl, false, javascript.length());
 	}

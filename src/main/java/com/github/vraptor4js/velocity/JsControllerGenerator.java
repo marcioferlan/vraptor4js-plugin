@@ -1,6 +1,7 @@
 package com.github.vraptor4js.velocity;
 
 import java.io.StringWriter;
+import java.util.List;
 import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
@@ -12,7 +13,9 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
+import com.github.vraptor4js.AppAction;
 import com.github.vraptor4js.ControllerLib;
+import com.google.common.collect.Maps;
 
 /**
  * Responsible for generating the JS Controllers on-the-fly.
@@ -46,10 +49,16 @@ public class JsControllerGenerator {
 
 	/**
 	 * Generates the JS Controller for the defined lib (angular [default] or jquery)
+	 * @param ctrl 
+	 * @param actions 
 	 * @param params
 	 * @return
 	 */
-	public String generate(final Map<String, Object> params) {
+	public String generate(List<AppAction> actions, String ctrl) {
+		final Map<String, Object> params = Maps.newHashMap();
+		params.put("ctrl", ctrl);
+		params.put("actions", actions);
+		
 		final VelocityContext context = new VelocityContext(params);
 		try {
 			final Template jsController = engine.getTemplate(String.format(TEMPLATE_PATH, lib.get()));

@@ -17,19 +17,10 @@ import javax.enterprise.inject.spi.ProcessAnnotatedType;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.caelum.vraptor.Controller;
-
 public class ControllerRegistryTest {
 
 	private ControllerRegistry controllerRegistry;
 
-	@Controller
-	static class MyController {
-		@V4js
-		public void myMethod() {}
-		public void myMethodWithoutAnnotation() {}
-	}
-	
 	@Before
 	public void setUp() throws Exception {
 		controllerRegistry = new ControllerRegistry();
@@ -39,7 +30,7 @@ public class ControllerRegistryTest {
 	public void shouldRegistryAction() {
 		ProcessAnnotatedType<MyController> type = new ProcessAnnotatedType<MyController>() {
 			public AnnotatedType<MyController> getAnnotatedType() {
-				return new AnnotatedType<ControllerRegistryTest.MyController>() {
+				return new AnnotatedType<MyController>() {
 					@Override public Type getBaseType() {return null;}
 					@Override public Set<Type> getTypeClosure() {return null;}
 					@Override public <T extends Annotation> T getAnnotation(Class<T> annotationType) {return null;}

@@ -20,11 +20,6 @@ public class AppActionTest {
 		appAction = new AppAction(method);
 	}
 
-	static class MyController {
-		public void myMethod() {
-		}
-	}
-	
 	@Test
 	public void shouldReturnMethod() {
 		assertThat(appAction.getMethod(), equalTo(method));
