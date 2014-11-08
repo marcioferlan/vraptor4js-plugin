@@ -20,7 +20,7 @@ public class ControllerLib implements Serializable {
 	public static final String LIB_JQUERY = "jquery";
 
 	private String lib;
-
+	
 	/**
 	 * Sets the JS library
 	 * @param lib

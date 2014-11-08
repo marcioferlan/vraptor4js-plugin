@@ -20,6 +20,13 @@ public class ControllerLinker {
 	private final Router router;
 	private final Configuration cfg;
 
+	/**
+	 * @deprecated CDI eyes-only
+	 */
+	protected ControllerLinker() {
+		this(null, null);
+	}
+	
 	@Inject
 	public ControllerLinker(Router router, Configuration cfg) {
 		this.router = router;

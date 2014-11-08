@@ -1,5 +1,9 @@
 # VRaptor4js Plugin
 
+[![Build Status](https://travis-ci.org/marcioferlan/vraptor4js-plugin.png?branch=master)](https://travis-ci.org/marcioferlan/vraptor4js-plugin)
+vraptor4js
+=====
+
 Overview
 --------
 This plugin creates a JS bridge to your VRaptor controllers. It works as an abstraction layer to expose the application actions to your JS components. With it, you can invoke the controllers methods directly without worring about the underlying infrastructure required to effectively get access to them (URLs, HTTP methods, CORS support, parameters binding, etc).
