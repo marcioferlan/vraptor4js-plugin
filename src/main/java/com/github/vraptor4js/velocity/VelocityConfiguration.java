@@ -11,9 +11,6 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class VelocityConfiguration {
 
-	public VelocityConfiguration() {
-	}
-
 	public String getResourceLoader() {
 		return "classpath";
 	}

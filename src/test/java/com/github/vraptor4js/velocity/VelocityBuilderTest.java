@@ -20,6 +20,7 @@ public class VelocityBuilderTest {
 		cfg = new VelocityConfiguration();
 		
 		builder = new VelocityBuilder(cfg);
+		builder.setUp();
 	}
 
 	@Test
