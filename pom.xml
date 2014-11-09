@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.github</groupId>
+	<groupId>br.com.caelum.vraptor</groupId>
 	<artifactId>vraptor4js-plugin</artifactId>
 	<packaging>jar</packaging>
-	<version>1.1.0</version>
-	<description>VRaptor4js - A JavaScript version of your VRaptor controllers</description>
+	<version>1.2.0</version>
+	<description>The JavaScript version of your VRaptor controllers</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<weld.version>2.1.2.Final</weld.version>
@@ -80,4 +80,10 @@
 		</plugins>
 	</build>
 
+	<name>VRaptor4js</name>
+	<url>https://github.com/marcioferlan/vraptor4js-plugin</url>
+	<ciManagement>
+		<system>Travis</system>
+		<url>https://travis-ci.org/marcioferlan/vraptor4js-plugin</url>
+	</ciManagement>
 </project>

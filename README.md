@@ -17,9 +17,9 @@ Installation
 Add VRaptor4js Maven dependency to you pom.xml:
 ```
 <dependency>
-	<groupId>com.github</groupId>
+	<groupId>br.com.caelum.vraptor</groupId>
 	<artifactId>vraptor4js-plugin</artifactId>
-	<version>1.1.0</version> <!-- use the latest version available -->
+	<version>1.2.0</version> <!-- use the latest version available -->
 </dependency>
 ```
 
@@ -114,6 +114,18 @@ As of now...
 - Template URLs not supported (like ```@Get("/path/{param}")```
 - With AngularJS, your namespaces must be ```app```, ```app.controllers``` and ```app.services```;
 - CORS headers not customizable (ex: ```Origin:*```, ```Allow-Methods:<all>```, etc).
+
+Changelog
+---------
+* v1.2.0
+	* Unit tests and Travis integration (contibution from @dtelaroli)
+	* Base package renamed to br.com.caelum.vraptor.v4js
+* v1.1.0
+	* Ability to define your own success and/or error callbacks
+	* Implementation of a default logging error callback
+	* @V4js annotation to identify controllers and methods to expose in the JS Controller
+* v1.0.0
+	* Initial version
 
 Feedback
 --------
