@@ -8,13 +8,11 @@ import org.apache.tools.ant.filters.StringInputStream;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
-import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.observer.download.Download;
 import br.com.caelum.vraptor.observer.download.InputStreamDownload;
 import br.com.caelum.vraptor.v4js.velocity.JsControllerGenerator;
 
 @Controller
-@Path("/v4js")
 public class VRaptor4jsController {
 
 	private static final String CONTENT_TYPE = "text/javascript; charset=UTF-8";
@@ -51,7 +49,7 @@ public class VRaptor4jsController {
 	 * @param ctrl
 	 * @return
 	 */
-	@Get("/{lib}/{ctrl}")
+	@Get("/v4js/{lib}/{ctrl}")
 	public Download controller(String lib, String ctrl) {
 		this.lib.set(lib);
 		final List<AppAction> actions = controllersRegistry.getActions(ctrl);
