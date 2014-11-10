@@ -17,9 +17,9 @@ Installation
 Add VRaptor4js Maven dependency to you pom.xml:
 ```
 <dependency>
-	<groupId>br.com.caelum.vraptor</groupId>
+	<groupId>com.gtisolucoes</groupId>
 	<artifactId>vraptor4js-plugin</artifactId>
-	<version>1.2.0</version> <!-- use the latest version available -->
+	<version>1.3.0</version> <!-- use the latest version available -->
 </dependency>
 ```
 
@@ -117,6 +117,8 @@ As of now...
 
 Changelog
 ---------
+* v1.3.0
+	* Base package and groupId renamed to com.gtisolucoes.vraptor4js (to publish the plugin in Sonatype repository)
 * v1.2.0
 	* Unit tests and Travis integration (contibution from @dtelaroli)
 	* Base package renamed to br.com.caelum.vraptor.v4js
