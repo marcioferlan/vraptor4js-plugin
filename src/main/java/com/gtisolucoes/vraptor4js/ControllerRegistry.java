@@ -11,6 +11,7 @@ import javax.enterprise.event.Observes;
 import javax.enterprise.inject.spi.AnnotatedType;
 import javax.enterprise.inject.spi.Extension;
 import javax.enterprise.inject.spi.ProcessAnnotatedType;
+import javax.enterprise.inject.spi.WithAnnotations;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
@@ -38,13 +39,11 @@ public class ControllerRegistry implements Extension {
 	 * Scans the application controllers
 	 * @param pat
 	 */
-	public void scanControllers(@Observes ProcessAnnotatedType<?> pat) {
+	public void scanControllers(@WithAnnotations(Controller.class) @Observes ProcessAnnotatedType<?> pat) {
 		final AnnotatedType<?> type = pat.getAnnotatedType();
-		if (type.isAnnotationPresent(Controller.class)) {
-			for (final Method method : type.getJavaClass().getDeclaredMethods()) {
-				if (isEligible(method)) {
-					registerAction(provider, method);
-				}
+		for (final Method method : type.getJavaClass().getDeclaredMethods()) {
+			if (isEligible(method)) {
+				registerAction(provider, method);
 			}
 		}
 	}
