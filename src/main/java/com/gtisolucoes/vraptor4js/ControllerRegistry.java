@@ -87,9 +87,30 @@ public class ControllerRegistry implements Extension {
 	 * @return
 	 */
 	private boolean isEligible(final Method method) {
-		return Modifier.isPublic(method.getModifiers()) && 
-				!Modifier.isStatic(method.getModifiers()) && 
-				(method.getDeclaringClass().getAnnotation(V4js.class) != null && (method.getAnnotation(V4js.class) == null || !method.getAnnotation(V4js.class).ignore()));
+		if (!Modifier.isPublic(method.getModifiers()) || Modifier.isStatic(method.getModifiers())) {
+			return false;
+		}
+		final Class<?> controller = method.getDeclaringClass();
+
+		boolean controllerAnnotated = controller.isAnnotationPresent(V4js.class);
+		boolean methodAnnotated = method.isAnnotationPresent(V4js.class);
+		// neither controller or method annotated -> return false
+		if (!methodAnnotated && !controllerAnnotated) {
+			return false;
+		}
+
+		boolean controllerIgnored = controllerAnnotated && controller.getAnnotation(V4js.class).ignore();
+		boolean methodIgnored = methodAnnotated && method.getAnnotation(V4js.class).ignore();
+		// controller or method ignored -> return false
+		if (controllerIgnored || methodIgnored) {
+			return false;
+		}
+		// controller not annotated
+		if (controllerAnnotated) {
+			return !methodAnnotated || !methodIgnored;
+		}
+		
+		return methodAnnotated && !methodIgnored;
 	}
 
 	/**
