@@ -117,6 +117,8 @@ As of now...
 
 Changelog
 ---------
+* v1.4.0-SNAPSHOT
+	* @V4js(ignore=true) to allow you to indicate methods you don't want to be exposed in your JS controllers
 * v1.3.0
 	* Base package and groupId renamed to com.gtisolucoes.vraptor4js (to publish the plugin in Sonatype repository)
 * v1.2.0

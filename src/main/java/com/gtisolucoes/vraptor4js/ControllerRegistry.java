@@ -89,7 +89,7 @@ public class ControllerRegistry implements Extension {
 	private boolean isEligible(final Method method) {
 		return Modifier.isPublic(method.getModifiers()) && 
 				!Modifier.isStatic(method.getModifiers()) && 
-				(method.getAnnotation(V4js.class) != null || method.getDeclaringClass().getAnnotation(V4js.class) != null);
+				(method.getDeclaringClass().getAnnotation(V4js.class) != null && (method.getAnnotation(V4js.class) == null || !method.getAnnotation(V4js.class).ignore()));
 	}
 
 	/**
