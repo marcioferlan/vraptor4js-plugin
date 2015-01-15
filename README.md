@@ -81,7 +81,27 @@ That's it. At this point you should be all set!
 CORS support
 ------------
 
-In case your REST services are provided by an application with a different domain/subdomain (like ```api.domain.com```), just add the absolute path to the resources (instead of relative paths), like this:
+In case your REST services are provided by an application with a different domain/subdomain (like ```api.domain.com```), you'll need CORS support enabled to access them.
+
+In web.xml, just add these properties as appropriate to enable it:
+
+```
+<!-- V4js CORS Support -->
+<context-param>
+    <param-name>Access-Control-Allow-Origin</param-name>
+    <param-value>*</param-value>
+</context-param>
+<context-param>
+    <param-name>Access-Control-Allow-Credentials</param-name>
+    <param-value>true</param-value>
+</context-param>
+<context-param>
+    <param-name>Access-Control-Expose-Headers</param-name>
+    <param-value>Content-Type, Location, X-Requested-With</param-value>
+</context-param>
+```
+
+Then, invoke your JS Controllers using the absolute path to them (instead of relative paths), like this:
 ```
 <!-- AngularJS -->
 <script src="http://api.domain.com/v4js/angular/PersonController"></script>
@@ -113,10 +133,12 @@ As of now...
 - Only GET and POST methods are supported;
 - Template URLs not supported (like ```@Get("/path/{param}")```
 - With AngularJS, your namespaces must be ```app```, ```app.controllers``` and ```app.services```;
-- CORS headers not customizable (ex: ```Origin:*```, ```Allow-Methods:<all>```, etc).
 
 Changelog
 ---------
+* v1.5.0-SNAPSHOT
+	* CORS headers customizable via <context-param> in web.xml.
+
 * v1.4.0-SNAPSHOT
 	* @V4js(ignore=true) to allow you to indicate methods you don't want to be exposed in your JS controllers
 * v1.3.0
