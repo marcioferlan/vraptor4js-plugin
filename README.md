@@ -81,7 +81,7 @@ That's it. At this point you should be all set!
 CORS support
 ------------
 
-In case your REST services are provided by an application with a different domain/subdomain (like ```api.domain.com```), you'll need CORS support enabled to access them.
+In case your REST services are provided by an application in a different domain/subdomain (like ```api.domain.com```), you'll need CORS support enabled in order to access them.
 
 In web.xml, just add these properties as appropriate to enable it:
 
