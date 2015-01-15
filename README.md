@@ -19,7 +19,7 @@ Add VRaptor4js Maven dependency to you pom.xml:
 <dependency>
 	<groupId>com.gtisolucoes</groupId>
 	<artifactId>vraptor4js-plugin</artifactId>
-	<version>1.3.0</version> <!-- use the latest version available -->
+	<version>1.5.0-SNAPSHOT</version> <!-- use the latest version available -->
 </dependency>
 ```
 
