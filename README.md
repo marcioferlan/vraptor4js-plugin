@@ -83,7 +83,7 @@ CORS support
 
 In case your REST services are provided by an application in a different domain/subdomain (like ```api.domain.com```), you'll need CORS support enabled in order to access them.
 
-In web.xml, just add these properties as appropriate to enable it:
+In web.xml, add the properties bellow with the appropriate values:
 
 ```
 <!-- V4js CORS Support -->
@@ -101,7 +101,7 @@ In web.xml, just add these properties as appropriate to enable it:
 </context-param>
 ```
 
-Then, invoke your JS Controllers using the absolute path to them (instead of relative paths), like this:
+Then, declare your JS Controllers using their absolute path, like this:
 ```
 <!-- AngularJS -->
 <script src="http://api.domain.com/v4js/angular/PersonController"></script>
@@ -109,7 +109,7 @@ or
 <!-- JQuery -->
 <script src="http://api.domain.com/v4js/jquery/PersonController"></script>
 ```
-VRaptor4js will ensure to enable CORS support in your application.
+VRaptor4js will ensure to enable CORS support in your application using the parameters provided by you.
 
 Features
 --------
