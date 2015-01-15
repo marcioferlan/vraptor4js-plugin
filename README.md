@@ -137,7 +137,7 @@ As of now...
 Changelog
 ---------
 * v1.5.0-SNAPSHOT
-	* CORS headers customizable via <context-param> in web.xml.
+	* CORS headers customizable via ```<context-param>``` in web.xml.
 
 * v1.4.0-SNAPSHOT
 	* @V4js(ignore=true) to allow you to indicate methods you don't want to be exposed in your JS controllers
