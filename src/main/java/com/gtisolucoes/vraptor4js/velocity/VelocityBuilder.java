@@ -51,8 +51,7 @@ public class VelocityBuilder {
 		}
 	}
 
-	private void mergeTemplate(String name, Map<String, Object> params,
-			StringWriter writer) {
+	private void mergeTemplate(String name, Map<String, Object> params, StringWriter writer) {
 		Template template = engine.getTemplate(name);
 		template.merge(new VelocityContext(params), writer);
 	}

@@ -48,7 +48,6 @@ public class JsControllerGenerator {
 		final Map<String, Object> params = Maps.newHashMap();
 		params.put("ctrl", ctrl);
 		params.put("actions", actions);
-		
 		return velocityWrapper.generate(params, String.format(TEMPLATE_PATH, lib.get()));
 	}
 
